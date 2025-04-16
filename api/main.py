@@ -2,22 +2,25 @@ from fastapi import FastAPI
 from pydantic import BaseModel
 import joblib # type: ignore
 import numpy as np
+from pydantic import BaseModel, Field
 
 app = FastAPI()
 
 # Cargar modelo entrenado
 model = joblib.load("models/model.pkl")
 
-# Definir esquema de entrada
+
+
 class DiabetesInput(BaseModel):
-    Pregnancies: int
-    Glucose: float
-    BloodPressure: float
-    SkinThickness: float
-    Insulin: float
-    BMI: float
-    DiabetesPedigreeFunction: float
-    Age: int
+    Pregnancies: int = Field(..., ge=0, le=20, description="Número de embarazos")
+    Glucose: float = Field(..., ge=1, le=300, description="Nivel de glucosa")
+    BloodPressure: float = Field(..., ge=1, le=200, description="Presión arterial")
+    SkinThickness: float = Field(..., ge=0, le=100, description="Espesor de piel")
+    Insulin: float = Field(..., ge=0, le=1000, description="Nivel de insulina")
+    BMI: float = Field(..., ge=0, le=80, description="Índice de masa corporal")
+    DiabetesPedigreeFunction: float = Field(..., ge=0.0, le=2.5, description="Historial familiar")
+    Age: int = Field(..., ge=0, le=120, description="Edad en años")
+
 
 @app.post("/predict")
 def predict(data: DiabetesInput):
