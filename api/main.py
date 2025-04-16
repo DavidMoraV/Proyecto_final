@@ -10,7 +10,6 @@ app = FastAPI()
 model = joblib.load("models/model.pkl")
 
 
-
 class DiabetesInput(BaseModel):
     Pregnancies: int = Field(..., ge=0, le=20, description="Número de embarazos")
     Glucose: float = Field(..., ge=1, le=300, description="Nivel de glucosa")
