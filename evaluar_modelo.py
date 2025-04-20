@@ -10,15 +10,26 @@ from sklearn.metrics import accuracy_score, confusion_matrix, classification_rep
 df = pd.read_csv("mlops_diabetes/diabetes.csv", sep=";", encoding="latin1")
 
 # 2. Renombrar columnas a nombres compatibles con el modelo
-df.columns = ['Pregnancies', 'Glucose', 'BloodPressure', 'SkinThickness',
-              'Insulin', 'BMI', 'DiabetesPedigreeFunction', 'Age', 'Outcome']
+df.columns = [
+    "Pregnancies",
+    "Glucose",
+    "BloodPressure",
+    "SkinThickness",
+    "Insulin",
+    "BMI",
+    "DiabetesPedigreeFunction",
+    "Age",
+    "Outcome",
+]
 
 # 3. Separar variables predictoras y variable objetivo
 X = df.drop("Outcome", axis=1)
 y = df["Outcome"]
 
 # 4. Separar conjunto de entrenamiento y prueba
-X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
+X_train, X_test, y_train, y_test = train_test_split(
+    X, y, test_size=0.2, random_state=42
+)
 
 # 5. Crear y entrenar modelo de regresión logística
 modelo = LogisticRegression(max_iter=1000)
@@ -39,8 +50,8 @@ print("\n📋 Reporte de clasificación:")
 print(classification_report(y_test, y_pred))
 
 # 8. Visualizar matriz de confusión
-plt.figure(figsize=(6,4))
-sns.heatmap(matriz, annot=True, fmt='d', cmap='Blues')
+plt.figure(figsize=(6, 4))
+sns.heatmap(matriz, annot=True, fmt="d", cmap="Blues")
 plt.title("Matriz de Confusión")
 plt.xlabel("Predicción")
 plt.ylabel("Real")
