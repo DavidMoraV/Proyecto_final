@@ -1,6 +1,9 @@
 # Proyecto_final
 #  Proyecto Final - Predicción de Diabetes (MLOps)
-
+Participantes:
+David Mora
+Esteban 
+Jorge 
 Este proyecto implementa un sistema de predicción de diabetes utilizando un modelo de machine learning. Está diseñado siguiendo principios de MLOps con enfoque en despliegue, automatización, validación y versionamiento.
 
 ---
