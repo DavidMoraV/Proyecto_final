@@ -25,9 +25,6 @@ jobs:
         pip install -r requirements.txt
         pip install dvc
 
-    - name: Recuperar archivos con DVC
-      run: dvc pull
-
     - name: Ejecutar reentrenamiento
       run: python retrain_model.py
 
