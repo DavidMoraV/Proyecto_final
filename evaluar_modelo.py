@@ -58,8 +58,6 @@ plt.ylabel("Real")
 plt.tight_layout()
 plt.show()
 
-import joblib
-
 # Después de evaluar el modelo (luego del reporte)
 joblib.dump(modelo, "models/model.pkl")
 print(" Modelo de Regresión Logística guardado como models/model.pkl")
