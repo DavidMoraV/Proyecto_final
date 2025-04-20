@@ -1,11 +1,12 @@
 # Proyecto_final
 #  Proyecto Final - Predicción de Diabetes (MLOps)
 Participantes:
-David Mora Vargas
 
-Esteban Gutiérrez Saborío
+David Mora Vargas: Software Engineer
 
-Jorge Arturo Jiménez Madrigal
+Esteban Gutiérrez Saborío: Data Scientist
+
+Jorge Arturo Jiménez Madrigal: MLops Engineer
 
 Este proyecto implementa un sistema de predicción de diabetes utilizando un modelo de machine learning. Está diseñado siguiendo principios de MLOps con enfoque en despliegue, automatización, validación y versionamiento.
 
