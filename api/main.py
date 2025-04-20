@@ -1,8 +1,7 @@
 from fastapi import FastAPI
-from pydantic import BaseModel
-import joblib  # type: ignore
-import numpy as np
 from pydantic import BaseModel, Field
+import joblib # type: ignore
+import numpy as np
 
 app = FastAPI()
 
