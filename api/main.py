@@ -1,6 +1,6 @@
 from fastapi import FastAPI
 from pydantic import BaseModel
-import joblib # type: ignore
+import joblib  # type: ignore
 import numpy as np
 from pydantic import BaseModel, Field
 
@@ -17,14 +17,27 @@ class DiabetesInput(BaseModel):
     SkinThickness: float = Field(..., ge=0, le=100, description="Espesor de piel")
     Insulin: float = Field(..., ge=0, le=1000, description="Nivel de insulina")
     BMI: float = Field(..., ge=0, le=80, description="Índice de masa corporal")
-    DiabetesPedigreeFunction: float = Field(..., ge=0.0, le=2.5, description="Historial familiar")
+    DiabetesPedigreeFunction: float = Field(
+        ..., ge=0.0, le=2.5, description="Historial familiar"
+    )
     Age: int = Field(..., ge=0, le=120, description="Edad en años")
 
 
 @app.post("/predict")
 def predict(data: DiabetesInput):
-    input_data = np.array([[data.Pregnancies, data.Glucose, data.BloodPressure,
-                            data.SkinThickness, data.Insulin, data.BMI,
-                            data.DiabetesPedigreeFunction, data.Age]])
+    input_data = np.array(
+        [
+            [
+                data.Pregnancies,
+                data.Glucose,
+                data.BloodPressure,
+                data.SkinThickness,
+                data.Insulin,
+                data.BMI,
+                data.DiabetesPedigreeFunction,
+                data.Age,
+            ]
+        ]
+    )
     prediction = model.predict(input_data)
     return {"prediction": int(prediction[0])}
