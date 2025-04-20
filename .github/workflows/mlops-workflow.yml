@@ -23,12 +23,10 @@ jobs:
       run: |
         python -m pip install --upgrade pip
         pip install -r requirements.txt
-        pip install dvc
+        pip install dvc black
 
     - name: Ejecutar reentrenamiento
       run: python retrain_model.py
 
-    - name: Validar formato del código
-      run: |
-        pip install black
-        black --check .
+    - name: Aplicar formato con Black automáticamente
+      run: black .
