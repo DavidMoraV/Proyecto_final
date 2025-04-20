@@ -14,21 +14,32 @@ if df.shape[1] == 1:
     df = df.iloc[:, 0].astype(str).str.split(";", expand=True)
 
 # Nombres de columnas
-df.columns = ['Pregnancies', 'Glucose', 'BloodPressure', 'SkinThickness',
-              'Insulin', 'BMI', 'DiabetesPedigreeFunction', 'Age', 'Outcome']
+df.columns = [
+    "Pregnancies",
+    "Glucose",
+    "BloodPressure",
+    "SkinThickness",
+    "Insulin",
+    "BMI",
+    "DiabetesPedigreeFunction",
+    "Age",
+    "Outcome",
+]
 
 # Convertir a numérico
 df = df.apply(pd.to_numeric)
 
 # Reemplazar ceros con NaN en columnas clave y luego llenar con media
-columnas_invalidas = ['Glucose', 'BloodPressure', 'SkinThickness', 'Insulin', 'BMI']
+columnas_invalidas = ["Glucose", "BloodPressure", "SkinThickness", "Insulin", "BMI"]
 df[columnas_invalidas] = df[columnas_invalidas].replace(0, np.nan)
 df.fillna(df.mean(), inplace=True)
 
 # Preparar datos
 X = df.drop("Outcome", axis=1)
 y = df["Outcome"]
-X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
+X_train, X_test, y_train, y_test = train_test_split(
+    X, y, test_size=0.2, random_state=42
+)
 
 # Entrenar modelo
 model = RandomForestClassifier(n_estimators=100, random_state=42)
